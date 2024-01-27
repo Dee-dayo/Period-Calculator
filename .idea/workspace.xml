@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c85bbd2-031c-4706-9c58-f9d1c2cbbd6c" name="Changes" comment="first test done" />
+    <list default="true" id="1c85bbd2-031c-4706-9c58-f9d1c2cbbd6c" name="Changes" comment="first test done">
+      <change afterPath="$PROJECT_DIR$/src/PeriodCalculatorTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeriodCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeriodCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/PeriodCalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/PeriodCalculatorTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -70,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706346202535</updated>
       <workItem from="1706346203649" duration="858000" />
-      <workItem from="1706347083902" duration="5092000" />
+      <workItem from="1706347083902" duration="19861000" />
     </task>
     <task id="LOCAL-00001" summary="first test done">
       <option name="closed" value="true" />
@@ -80,7 +85,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706352017353</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first test done">
+      <option name="closed" value="true" />
+      <created>1706352488529</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706352488529</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
