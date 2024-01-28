@@ -5,19 +5,18 @@ import java.text.SimpleDateFormat;
 public class PeriodCalculator {
 
     private Calendar oldCalendar = Calendar.getInstance();
-    private Calendar newCalender = Calendar.getInstance();
+    private Calendar newCalendar = Calendar.getInstance();
     private SimpleDateFormat myFormat = new SimpleDateFormat("MMM dd");
     private int previousPeriodStartDay;
     private int previousPeriodStartMonth;
     private int noOfDayOfPreviousPeriod;
     private int averageLengthOfCycle;
-    private int ovulationDay;
-
-
+    private int ovulationStartDay;
+    private int ovulationEndDay;
 
     public void setPreviousPeriodStartDay(int previousPeriodStartDay){
         if (previousPeriodStartDay >=1 && previousPeriodStartDay <= 31) {
-           this.previousPeriodStartDay = previousPeriodStartDay;
+            this.previousPeriodStartDay = previousPeriodStartDay;
         } else {
             System.out.println("You entered a value more than the usual");
         }
@@ -25,12 +24,11 @@ public class PeriodCalculator {
 
     public void setPreviousPeriodStartMonth (int previousPeriodStartMonth){
         if (previousPeriodStartMonth >=1 && previousPeriodStartMonth <= 12) {
-           this.previousPeriodStartMonth = previousPeriodStartMonth;
+            this.previousPeriodStartMonth = previousPeriodStartMonth;
         } else {
             System.out.println("You entered a value more than the usual");
         }
     }
-
 
     public String getPreviousStartDate(){
         oldCalendar.set(Calendar.DATE, previousPeriodStartDay);
@@ -46,21 +44,33 @@ public class PeriodCalculator {
     }
 
     public String getNewStartDate(){
-        newCalender.set(Calendar.DATE, previousPeriodStartDay + averageLengthOfCycle);
-        newCalender.set(Calendar.MONTH, (previousPeriodStartMonth - 1) + 1);
-        Date date = newCalender.getTime();
+        newCalendar.set(Calendar.DATE, previousPeriodStartDay + averageLengthOfCycle);
+        newCalendar.set(Calendar.MONTH, (previousPeriodStartMonth - 1));
+        Date date = newCalendar.getTime();
         return myFormat.format(date);
     }
 
     public String getNewEndDate(){
-        newCalender.set(Calendar.DATE, (previousPeriodStartDay + averageLengthOfCycle + noOfDayOfPreviousPeriod));
-        Date date = newCalender.getTime();
+        newCalendar.set(Calendar.DATE, previousPeriodStartDay + averageLengthOfCycle);
+        newCalendar.set(Calendar.MONTH, previousPeriodStartMonth - 1);
+        newCalendar.add(Calendar.DATE, noOfDayOfPreviousPeriod - 1);
+        Date date = newCalendar.getTime();
         return myFormat.format(date);
     }
 
-    public String getNewOvulationDate(){
-        newCalender.set(Calendar.DATE, (previousPeriodStartDay + averageLengthOfCycle + noOfDayOfPreviousPeriod + ovulationDay));
-        Date date = newCalender.getTime();
+    public String getOvulationStartDate(){
+        newCalendar.set(Calendar.DATE, (previousPeriodStartDay + averageLengthOfCycle));
+        newCalendar.set(Calendar.MONTH, previousPeriodStartMonth - 1);
+        newCalendar.add(Calendar.DATE, (averageLengthOfCycle - 14)); // Assuming ovulation occurs 14 days before next period
+        Date date = newCalendar.getTime();
+        return myFormat.format(date);
+    }
+
+    public String getOvulationEndDate(){
+        newCalendar.set(Calendar.DATE, (previousPeriodStartDay + averageLengthOfCycle));
+        newCalendar.set(Calendar.MONTH, previousPeriodStartMonth - 1);
+        newCalendar.add(Calendar.DATE, (averageLengthOfCycle - 10)); // Assuming ovulation occurs 14 days before next period and lasts for 4 days
+        Date date = newCalendar.getTime();
         return myFormat.format(date);
     }
 
@@ -72,7 +82,7 @@ public class PeriodCalculator {
         return noOfDayOfPreviousPeriod;
     }
 
-    public void setAverageLengthOfMenstralCycle(int averageLengthOfCycle){
+    public void setAverageLengthOfMenstrualCycle(int averageLengthOfCycle){
         this.averageLengthOfCycle = averageLengthOfCycle;
     }
 
@@ -80,31 +90,16 @@ public class PeriodCalculator {
         return averageLengthOfCycle;
     }
 
-    private int calculateOvulationDay() {
-        int daysBeforeNextPeriod = 14;
-        ovulationDay = previousPeriodStartDay + averageLengthOfCycle - daysBeforeNextPeriod;
-        return ovulationDay;
-    }
-
-    public String getPreviousOvulationDay(){
-        oldCalendar.set(Calendar.DATE, ovulationDay);
-        Date date = oldCalendar.getTime();
-        return myFormat.format(date);
-    }
-
-
     public String displayPreviousCycle(){
         String display = "\n\nYour last period started on " + getPreviousStartDate() +
-                "\nThe period ended on the " + getPreviousEndDate() +
-                "\nYour Ovulation day is " + getPreviousOvulationDay();
+                "\nThe period ended on the " + getPreviousEndDate();
         return display;
     }
 
     public String displayNewCycle(){
         String display = "\n\nYour next period will start on " + getNewStartDate() +
                 "\nThe period will end on " + getNewEndDate() +
-                "\nYour next Ovulation day is " + getNewOvulationDate();
+                "\nYour ovulation period will be from " + getOvulationStartDate() + " to " + getOvulationEndDate();
         return display;
     }
-
 }

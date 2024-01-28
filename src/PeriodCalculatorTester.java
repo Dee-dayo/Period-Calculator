@@ -18,7 +18,9 @@ public class PeriodCalculatorTester {
 
         System.out.print("How long is your average menstral cycle? ");
         int noOfCycle = input.nextInt();
-        periodCalculator.setAverageLengthOfMenstralCycle(noOfCycle);
+        periodCalculator.setAverageLengthOfMenstrualCycle(noOfCycle);
+
+
 
         System.out.print(periodCalculator.displayPreviousCycle());
         System.out.print(periodCalculator.displayNewCycle());
